@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 import zipfile
 import argparse
@@ -77,6 +78,7 @@ def verify_submitted_files(submission_file: Path, expected_txt_files: Path) -> N
         if len(unexpected_txt_files) > 0:
             print(f"Unexpected files: {unexpected_txt_files}")
 
+        png_pattern = r".*_instanceIds_\d+_1.png$"
         missing_png_files = png_files.copy()
         for txt_file in txt_files:
             with zip_ref.open(txt_file) as file:
@@ -90,6 +92,11 @@ def verify_submitted_files(submission_file: Path, expected_txt_files: Path) -> N
                     folder = Path(txt_file).parent
                     filename = line.split(" ")[0]
                     png_references.add(str(folder / filename))
+                    if not re.match(png_pattern, filename):
+                        raise ValidationException(
+                            f"Png file in txt has name: {filename}, expected ending: *_instanceIds_N_1.png"
+                        )
+
                 missing_png_files -= png_references
         if len(missing_png_files) > 0:
             raise ValidationException(
