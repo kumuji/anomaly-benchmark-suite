@@ -1,3 +1,5 @@
+Benchmark suite for [OoDIS Benchmark](https://vision.rwth-aachen.de/oodis)
+
 ```bash
 python scoring_program/evaluate.py data/fishyscapes_submission data/fishyscapes ./output
 ```
