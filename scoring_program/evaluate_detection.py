@@ -126,6 +126,10 @@ def main(submit_path, labels_path, output_path):
         "ars",
         "arm",
         "arl",
+        "tp50",
+        "fp50",
+        "fn50",
+        "ppf",
     ]
 
     results = dict()
@@ -155,7 +159,7 @@ def main(submit_path, labels_path, output_path):
                 results[data]["tp50"],
                 results[data]["fp50"],
                 results[data]["fn50"],
-                results[data]["ffp"],
+                results[data]["ppf"],
             ) = compute_classification_metrics(cocoGt, cocoEval, threshold=0.5)
 
     fslaf_coeff = 1
