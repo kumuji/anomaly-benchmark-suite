@@ -126,10 +126,6 @@ def main(submit_path, labels_path, output_path):
         "ars",
         "arm",
         "arl",
-        "tp50",
-        "fp50",
-        "fn50",
-        "ppf",
     ]
 
     results = dict()
@@ -162,6 +158,14 @@ def main(submit_path, labels_path, output_path):
                 results[data]["ppf"],
             ) = compute_classification_metrics(cocoGt, cocoEval, threshold=0.5)
 
+    metric_keys.extend(
+        [
+            "tp50",
+            "fp50",
+            "fn50",
+            "ppf",
+        ]
+    )
     fslaf_coeff = 1
     results["unified"] = dict()
     for key in metric_keys:
