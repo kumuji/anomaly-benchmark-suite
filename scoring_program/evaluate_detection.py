@@ -1,11 +1,13 @@
-from __future__ import print_function, absolute_import, division
+from __future__ import absolute_import, division, print_function
+
 import argparse
 import json
-import sys
-from pathlib import Path
-import numpy as np
-import tempfile
 import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+import numpy as np
 
 
 def install_package(package_name):
@@ -83,7 +85,7 @@ def compute_classification_metrics(cocoGt, cocoEval, threshold=0.5):
     return tp, fp, fn, ffp
 
 
-def main(submit_path, labels_path , output_path):
+def main(submit_path, labels_path, output_path):
     output_path = Path(output_path)
     submit_path = Path(submit_path)
     labels_path = Path(labels_path)
@@ -159,9 +161,7 @@ def main(submit_path, labels_path , output_path):
     fslaf_coeff = 1
     results["unified"] = dict()
     for key in metric_keys:
-        results["unified"][key] = (
-            results["fishyscapes"][key] * fslaf_coeff
-        )
+        results["unified"][key] = results["fishyscapes"][key] * fslaf_coeff
     ret = {
         "AP": results["unified"]["ap"] * 100,
         "AP50": results["unified"]["ap50"] * 100,
@@ -172,15 +172,17 @@ def main(submit_path, labels_path , output_path):
     with open(output_filename, "w") as file:
         for k, v in ret.items():
             file.write(f"{k}: {v}\n")
-    print(f"Results :{ret}")
+    print(f"Results :{results}")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Evaluation Script For Detection Benchmark")
+    parser = argparse.ArgumentParser(
+        description="Evaluation Script For Detection Benchmark"
+    )
 
     parser.add_argument("submit_path", help="Path to the submission file")
     parser.add_argument("labels_path", help="Path to the labels file")
     parser.add_argument("output_path", help="Path to the output file")
 
     args = parser.parse_args()
-    main(args.submit_path, args.labels_path , args.output_path)
+    main(args.submit_path, args.labels_path, args.output_path)

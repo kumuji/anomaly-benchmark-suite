@@ -9,7 +9,7 @@ python scoring_program/evaluate.py data/fishyscapes_submission data/fishyscapes 
 ```
 
 ```bash
-python verify_submission.py ./submission.zip
+python verify_submission.py --task segmentation --expected_files assets/expected_files.txt ./submission.zip
 ```
 
 ## For Detection
@@ -18,5 +18,5 @@ python scoring_program/evaluate_detection.py data/fishyscapes_submission labels 
 ```
 
 ```bash
-python verify_detection_submission.py ./submission.zip
+python verify_submission.py --task detection --expected_files assets/expected_files.txt ./submission.zip
 ```
