@@ -34,7 +34,7 @@ def verify_submitted_files(
                 )
             print(CHECKMARK)
         if task == "detection":
-            if expected_files >= files:
+            if not (expected_files >= files):
                 raise ValidationException(
                     f"Files found {files}, expected: {expected_files}"
                 )
