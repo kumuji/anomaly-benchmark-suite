@@ -23,10 +23,10 @@ python verify_submission.py --task detection --expected_files assets/expected_fi
 
 For citation of the benchmark use:
 ```yaml
-@article{nekrasov2024oodis,
- title={{OoDIS: Anomaly Instance Segmentation Benchmark}},
+@inproceedings{nekrasov2025oodis,
+ title={{OoDIS: Anomaly Instance Segmentation and Detection Benchmark}},
  author={Nekrasov, Alexey and Zhou, Rui and Ackermann, Miriam and Hermans, Alexander and Leibe, Bastian and Rottmann, Matthias},
- journal={arXiv preprint arXiv:2406.11835},
- year={2024}
+ booktitle="International Conference on Robotics and Automation (ICRA)",
+ year={2025}
 }
 ```
